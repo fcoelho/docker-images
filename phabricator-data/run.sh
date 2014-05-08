@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# ensure correct permissions
+chown phd:phd -R /var/repo
+
+PHABRICATOR=/phabricator
+
+
+function check_prerequisites {
+	local fail=false
+
+	for d in /phabricator /var/repo; do
+		if [ ! -d $d ]; then
+			echo "$d volume does not exist or is not a directory"
+			fail=true
+		fi
+	done
+
+	if [[ ! -v DB_PORT ]]; then
+		echo "Database not configured, use the Docker Links, Luke\!"
+		fail=true
+	fi
+
+	if [[ ( ! -v DB_PASS ) || ( ! -v DB_USER ) ]]; then
+		echo "Database credentials missing, add them as environment variables:"
+		printf "\tDB_PASS\n\tDB_USER\n"
+		fail=true
+	fi
+
+	$fail && exit 1
+}
+
+function clone_repositories {
+	for d in phabricator libphutil arcanist; do
+		if [ -d $PHABRICATOR/$d ]; then
+			(cd $PHABRICATOR/$d && git pull)
+		else
+			git clone git://github.com/facebook/$d.git $PHABRICATOR/$d
+		fi
+	done
+}
+
+function config_and_upgrade {
+	$PHABRICATOR/phabricator/bin/config set mysql.pass "$DB_PASS"
+	$PHABRICATOR/phabricator/bin/config set mysql.user "$DB_USER"
+	$PHABRICATOR/phabricator/bin/config set mysql.host "$DB_PORT_3306_TCP_ADDR"
+
+	$PHABRICATOR/phabricator/bin/config set environment.append-paths '["/usr/lib/git-core"]'
+
+	$PHABRICATOR/phabricator/bin/config set phd.user phd
+	$PHABRICATOR/phabricator/bin/config set diffusion.ssh-user scm
+
+	$PHABRICATOR/phabricator/bin/storage upgrade --force
+}
+
+check_prerequisites
+clone_repositories
+config_and_upgrade
+

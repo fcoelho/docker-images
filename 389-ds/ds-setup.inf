@@ -1,0 +1,45 @@
+[General]
+AdminDomain = ADMIN_DOMAIN
+ConfigDirectoryAdminID = CONFIG_DIR_ADMIN_ID
+ConfigDirectoryAdminPwd = CONFIG_DIR_ADMIN_PWD
+ConfigDirectoryLdapURL = ldap://FULL_MACHINE_NAME:389/o=NetscapeRoot
+FullMachineName = FULL_MACHINE_NAME
+ServerRoot = /usr/lib64/dirsrv
+SuiteSpotGroup = nobody
+SuiteSpotUserID = nobody
+[admin]
+Port = 9830
+ServerAdminID = CONFIG_DIR_ADMIN_ID
+ServerAdminPwd = CONFIG_DIR_ADMIN_PWD
+ServerIpAddress = 0.0.0.0
+SysUser = nobody
+[slapd]
+AddOrgEntries = Yes
+AddSampleEntries = No
+HashedRootDNPwd = ROOT_DN_PWD_HASHED
+InstallLdifFile = suggest
+RootDN = ROOT_DN
+RootDNPwd = ROOT_DN_PWD
+ServerIdentifier = SERVER_IDENTIFIER
+ServerPort = 389
+SlapdConfigForMC = yes
+Suffix = SUFFIX
+UseExistingMC = 0
+bak_dir = /var/lib/dirsrv/slapd-SERVER_IDENTIFIER/bak
+bindir = /usr/bin
+cert_dir = /etc/dirsrv/slapd-SERVER_IDENTIFIER
+config_dir = /etc/dirsrv/slapd-SERVER_IDENTIFIER
+datadir = /usr/share
+db_dir = /var/lib/dirsrv/slapd-SERVER_IDENTIFIER/db
+ds_bename = userRoot
+inst_dir = /usr/lib64/dirsrv/slapd-SERVER_IDENTIFIER
+ldif_dir = /var/lib/dirsrv/slapd-SERVER_IDENTIFIER/ldif
+localstatedir = /var
+lock_dir = /var/lock/dirsrv/slapd-SERVER_IDENTIFIER
+log_dir = /var/log/dirsrv/slapd-SERVER_IDENTIFIER
+naming_value = SERVER_IDENTIFIER
+run_dir = /var/run/dirsrv
+sbindir = /usr/sbin
+schema_dir = /etc/dirsrv/slapd-SERVER_IDENTIFIER/schema
+sysconfdir = /etc
+tmp_dir = /tmp
