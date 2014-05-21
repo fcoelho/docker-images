@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:wheezy
 
 MAINTAINER Felipe Bessa Coelho <fcoelho.9@gmail.com>
 
