@@ -13,4 +13,4 @@ else
 	echo "[NO]"
 fi
 
-usr/sbin/nginx -c /etc/nginx/nginx.conf
+/usr/sbin/nginx -c /etc/nginx/nginx.conf
