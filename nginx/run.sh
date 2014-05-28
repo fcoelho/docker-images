@@ -1,16 +1,24 @@
 #!/bin/bash
 
-# Check for php-fpm and build upstream if needed
-echo -n "Checking for PHPFPM upstream: "
-if [ -n "$PHPFPM_PORT" ]; then
-	cat > /etc/nginx/upstream-phpfpm.conf <<EOF
-		upstream php {
-			server ${PHPFPM_PORT_9000_TCP#tcp://};
+UPSTREAMS_FILE=/etc/nginx/upstreams.conf
+REGEX="(.*_UPSTREAM)_PORT=tcp://(.*)$"
+
+function write_upstream {
+	echo -n "Installing upstream $1:$2"
+	cat > $UPSTREAMS_FILE <<EOF
+		upstream $1 {
+			server $2;
 		}
 EOF
-	echo "[YES]"
-else
-	echo "[NO]"
-fi
+}
+
+touch $UPSTREAMS_FILE
+env | while read name; do
+	[[ $name =~ $REGEX ]]
+	if [ -n "${BASH_REMATCH[1]}" ]; then
+		write_upstream ${BASH_REMATCH[1]} ${BASH_REMATCH[2]}
+	fi
+done
+
 
 /usr/sbin/nginx -c /etc/nginx/nginx.conf
