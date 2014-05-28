@@ -12,7 +12,8 @@ function write_upstream {
 EOF
 }
 
-touch $UPSTREAMS_FILE
+# Always start with an empty file
+echo > $UPSTREAMS_FILE
 env | while read name; do
 	[[ $name =~ $REGEX ]]
 	if [ -n "${BASH_REMATCH[1]}" ]; then
