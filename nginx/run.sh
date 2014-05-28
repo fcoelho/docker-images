@@ -5,7 +5,7 @@ REGEX="(.*_UPSTREAM)_PORT=tcp://(.*)$"
 
 function write_upstream {
 	echo -n "Installing upstream $1:$2"
-	cat > $UPSTREAMS_FILE <<EOF
+	cat >> $UPSTREAMS_FILE <<EOF
 		upstream $1 {
 			server $2;
 		}
