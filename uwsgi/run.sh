@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /code
+cd ${CODE_PATH:-/code}
 
 if [ -n "$PYPI_PORT" ]; then
 	PYPI_FLAGS="-i ${PYPI_PORT/tcp:/http:}/root/pypi/"

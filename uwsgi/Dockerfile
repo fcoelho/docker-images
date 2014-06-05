@@ -7,7 +7,7 @@ RUN apt-get update && \
 
 RUN pip install uwsgi
 
-VOLUME  ["/files", "/code"]
+VOLUME  ["/data"]
 
 ADD run.sh /run.sh
 
