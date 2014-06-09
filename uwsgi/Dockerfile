@@ -1,11 +1,11 @@
 FROM google/python
 
-RUN    apt-get update
-	&& apt-get install -y --no-install-recommends libjpeg-dev libpng-dev
-	&& apt-get clean
+RUN    apt-get update \
+	&& apt-get install -y --no-install-recommends libjpeg-dev libpng-dev \
+	&& apt-get clean \
 	&& rm -rf /var/cache/apt/*
 
-VOLUME  ["/data", "/env"]
+VOLUME  ["/data"]
 
 ADD run.sh /run.sh
 
