@@ -5,7 +5,7 @@ RUN    apt-get update \
 	&& apt-get clean \
 	&& rm -rf /var/cache/apt/*
 
-VOLUME  ["/data"]
+VOLUME  ["/data", "/env", "/code"]
 
 ADD run.sh /run.sh
 
