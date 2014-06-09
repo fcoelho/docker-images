@@ -1,11 +1,11 @@
 FROM google/python
 
-RUN apt-get update && apt-get install -y --no-install-recommends libjpeg-dev libpng-dev
-RUN virtualenv /env
+RUN    apt-get update
+	&& apt-get install -y --no-install-recommends libjpeg-dev libpng-dev
+	&& apt-get clean
+	&& rm -rf /var/cache/apt/*
 
-RUN /env/bin/pip install uwsgi
-
-VOLUME  ["/data"]
+VOLUME  ["/data", "/env"]
 
 ADD run.sh /run.sh
 
