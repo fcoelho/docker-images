@@ -8,7 +8,13 @@ if find /env -maxdepth 0 -empty | read v; then
 	virtualenv /env
 fi
 
-/env/bin/pip install -r /code/${REQUIREMENTS_FILE:-requirements.txt} $PYPI_FLAGS
+REQUIREMENTS_FILE=/code/${REQUIREMENTS_FILE:-requirements.txt}
+
+if [ -f $REQUIREMENTS_FILE ]; then
+	/env/bin/pip install -r $REQUIREMENTS_FILE $PYPI_FLAGS
+else
+	/env/bin/pip install celery $PYPI_FLAGS
+fi
 
 chown celery:celery -R /log
 
