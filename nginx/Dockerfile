@@ -9,7 +9,7 @@ RUN rm -rf /etc/nginx/conf.d/*
 ADD nginx.conf /etc/nginx/nginx.conf
 ADD run.sh /run.sh
 
-VOLUME ["/etc/nginx/conf.d"]
+VOLUME ["/etc/nginx/conf.d", "/var/log/nginx/"]
 
 EXPOSE 80 443
 

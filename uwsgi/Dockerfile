@@ -1,7 +1,7 @@
 FROM google/python
 
 RUN    apt-get update \
-	&& apt-get install -y --no-install-recommends libjpeg-dev libpng-dev libpqxx3-dev libmysqlclient-dev \
+	&& apt-get install -y --no-install-recommends mercurial libjpeg-dev libpng-dev libpqxx3-dev libmysqlclient-dev \
 	&& apt-get clean \
 	&& rm -rf /var/cache/apt/*
 
