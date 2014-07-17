@@ -3,7 +3,7 @@ FROM centos:centos6
 MAINTAINER Felipe Bessa Coelho <fcoelho.9@gmail.com>
 
 # dependencies used to build Python 2.7
-RUN yum install -y tar bzip2 gcc make zlib-devel bzip2-devel readline-devel sqlite-devel openssl-devel
+RUN yum install --enablerepo=centosplus -y tar bzip2 gcc make zlib-devel bzip2-devel readline-devel sqlite-devel openssl-devel
 
 RUN	cd /tmp && \
 	curl -O https://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz && \

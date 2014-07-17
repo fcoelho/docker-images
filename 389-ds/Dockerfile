@@ -2,7 +2,7 @@ FROM fcoelho/python27
 MAINTAINER Felipe Bessa Coelho <fcoelho.9@gmail.com>
 
 RUN yum install -y http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
-RUN yum install -y 389-ds && yum clean all
+RUN yum install -y --enablerepo=centosplus 389-ds && yum clean all
 # We backup dirsrv directories because volumes will replace them when the
 # container is started. During the first run, this will be copied back to the
 # correct location to populate the volumes
