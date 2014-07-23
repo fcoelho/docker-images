@@ -1,4 +1,4 @@
-FROM centos
+FROM centos:centos6
 
 MAINTAINER Felipe Bessa Coelho, fcoelho.9@gmail.com
 
