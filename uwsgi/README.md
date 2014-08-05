@@ -14,7 +14,7 @@ To run the image successfully, you'll need at least two things:
 * A requirements file
 
 The WSGI application module is where your application is defined, described as
-a dotted path ending in `:application_name``. So, if you have a ``wsgi.py``
+a dotted path ending in ``:application_name``. So, if you have a ``wsgi.py``
 file at the root of your project and a WSGI callable called ``application``,
 your WSGI module should be called ``wsgi:application``. For a Django project
 named ``djangoproj``, your WSGI module would be (probably) called
@@ -43,7 +43,7 @@ docker run --volume /path/to/code:/code -e WSGI_MODULE="djangoproj.wsgi:applicat
 To use a different requirements file, run with:
 
 ```
-docker run --volume /path/to/code:/code -e REQUIREMENTE_FILE=requirements/somefile.txt fcoelho/uwsgi
+docker run --volume /path/to/code:/code -e REQUIREMENTS_FILE=requirements/somefile.txt fcoelho/uwsgi
 ```
 
 Extra
