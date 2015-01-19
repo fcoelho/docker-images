@@ -1,0 +1,1 @@
+*/15 * * * * www-data php -f /owncloud/cron.php
