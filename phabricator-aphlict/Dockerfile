@@ -6,6 +6,7 @@ MAINTAINER Felipe Bessa Coelho <fcoelho.9@gmail.com>
 RUN apt-get install -y nodejs npm
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 RUN sudo -u phd mkdir -p /var/tmp/aphlict/pid
+RUN touch /var/log/aphlict.log && chown phd:phd /var/log/aphlict.log
 ADD aphlict-supervisor.conf /etc/supervisor/conf.d/aphlict-supervisor.conf
 ADD run.sh /run.sh
 

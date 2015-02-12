@@ -7,4 +7,4 @@ if ! npm view ws version &> /dev/null; then
 	npm install ws
 fi
 
-sudo -u phd /phabricator/phabricator/bin/aphlict start
+sudo -u phd /phabricator/phabricator/bin/aphlict start --client-port=22280
