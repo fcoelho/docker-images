@@ -41,14 +41,21 @@ function clone_repositories {
 }
 
 function config_and_upgrade {
-	$PHABRICATOR/phabricator/bin/config set mysql.pass "$DB_PASS"
-	$PHABRICATOR/phabricator/bin/config set mysql.user "$DB_USER"
-	$PHABRICATOR/phabricator/bin/config set mysql.host "$DB_PORT_3306_TCP_ADDR"
+	config=$PHABRICATOR/phabricator/bin/config
 
-	$PHABRICATOR/phabricator/bin/config set environment.append-paths '["/usr/lib/git-core"]'
+	$config set mysql.pass "$DB_PASS"
+	$config set mysql.user "$DB_USER"
+	$config set mysql.host "$DB_PORT_3306_TCP_ADDR"
 
-	$PHABRICATOR/phabricator/bin/config set phd.user phd
-	$PHABRICATOR/phabricator/bin/config set diffusion.ssh-user scm
+	$config set environment.append-paths '["/usr/lib/git-core"]'
+
+	$config set phd.user phd
+	$config set diffusion.ssh-user scm
+
+	if [[ -v APHLICT_PORT ]]; then
+		$config set notification.client-uri "https://scm.afrodite.ifsc.usp.br/ws/"
+		$config set notification.server-uri "http://aphlict:22281"
+	fi
 
 	$PHABRICATOR/phabricator/bin/storage upgrade --force
 }
