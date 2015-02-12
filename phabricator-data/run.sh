@@ -52,8 +52,8 @@ function config_and_upgrade {
 	$config set phd.user phd
 	$config set diffusion.ssh-user scm
 
-	if [[ -v APHLICT_PORT ]]; then
-		$config set notification.client-uri "https://scm.afrodite.ifsc.usp.br/ws/"
+	if [[ ( -v APHLICT_PORT ) && ( -v APHLICT_CLIENT_URI ) ]]; then
+		$config set notification.client-uri "$APHLICT_CLIENT_URI"
 		$config set notification.server-uri "http://aphlict:22281"
 	fi
 
