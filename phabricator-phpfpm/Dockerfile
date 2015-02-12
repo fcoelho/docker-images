@@ -3,10 +3,11 @@ FROM fcoelho/phabricator-base
 MAINTAINER Felipe Bessa Coelho <fcoelho.9@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y php5-fpm php5-apcu
+RUN apt-get update && apt-get install -y php5-fpm php5-apcu python-pip
 RUN \
 	sed -i "s/listen =.*/listen = 0.0.0.0:9000/g" /etc/php5/fpm/pool.d/www.conf && \
 	sed -i "s/;daemonize.*/daemonize = no/g" /etc/php5/fpm/php-fpm.conf
+RUN pip install pygments
 
 ADD wwwdata-sudo /etc/sudoers.d/wwwdata-sudo
 
