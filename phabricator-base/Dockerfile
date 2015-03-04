@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y \
 	sudo \
 	supervisor
 
+RUN sed -i 's/^# hgext.rebase/hgext.rebase/' /etc/mercurial/hgrc.d/hgext.rc
+
 VOLUME ["/etc/supervisor/conf.d"]
 
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
