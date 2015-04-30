@@ -45,7 +45,7 @@ function config_and_upgrade {
 
 	$config set mysql.pass "$DB_PASS"
 	$config set mysql.user "$DB_USER"
-	$config set mysql.host "$DB_PORT_3306_TCP_ADDR"
+	$config set mysql.host "db"
 
 	$config set environment.append-paths '["/usr/lib/git-core"]'
 
