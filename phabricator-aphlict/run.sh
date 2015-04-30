@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PHABRICATOR=/phabricator
+PHABRICATOR=/phabricator/phabricator
 
 cd $PHABRICATOR/support/aphlict/server
 if ! npm view ws version &> /dev/null; then
