@@ -12,6 +12,6 @@ ADD run.sh /run.sh
 
 VOLUME ["/phabricator"]
 
-EXPOSE 22280
+EXPOSE 22281
 
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
