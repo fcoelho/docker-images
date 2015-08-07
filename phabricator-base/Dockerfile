@@ -15,6 +15,7 @@ RUN yum install -y \
     php-gd         \
     php-json       \
     php-ldap       \
+    php-process    \
     php-mysql      \
     sudo           \
     supervisor
