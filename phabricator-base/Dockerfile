@@ -15,8 +15,10 @@ RUN yum install -y \
     php-gd         \
     php-json       \
     php-ldap       \
-    php-process    \
+    php-mbstring   \
     php-mysql      \
+    php-opcache    \
+    php-process    \
     sudo           \
     supervisor
 
