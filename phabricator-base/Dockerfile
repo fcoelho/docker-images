@@ -1,20 +1,31 @@
-FROM debian:jessie
+FROM centos:centos7
 
 MAINTAINER Felipe Bessa Coelho <fcoelho.9@gmail.com>
 
 RUN useradd --system scm
 RUN useradd --system phd
 
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y \
-	php5-mysql php5-gd php5-dev php5-curl php5-cli php5-json php5-ldap \
-	git mercurial \
-	sudo \
-	supervisor
+RUN yum install -y epel-release
+RUN yum install -y \
+    git            \
+    mercurial      \
+    php-cli        \
+    php-curl       \
+    php-devel      \
+    php-gd         \
+    php-json       \
+    php-ldap       \
+    php-mysql      \
+    sudo           \
+    supervisor
 
-RUN sed -i 's/^# hgext.rebase/hgext.rebase/' /etc/mercurial/hgrc.d/hgext.rc
+COPY rebase.rc /etc/mercurial/hgrc.d/rebase.rc
 
-VOLUME ["/etc/supervisor/conf.d"]
+ENV PHABRICATOR_VERSION=stable \
+    LIBPHUTIL_VERSION=stable   \
+    ARCANIST_VERSION=stable
 
-CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
-
+RUN cd /opt && \
+    git clone --branch $PHABRICATOR_VERSION https://secure.phabricator.com/diffusion/P/phabricator.git && \
+    git clone --branch $LIBPHUTIL_VERSION https://secure.phabricator.com/diffusion/PHU/libphutil.git && \
+    git clone --branch $ARCANIST_VERSION https://secure.phabricator.com/diffusion/ARC/arcanist.git
