@@ -1,12 +1,12 @@
 #!/bin/sh
 
 if [ -n "$MAX_UPLOAD_SIZE" ]; then
-	sed -i "s/upload_max_filesize =.*/upload_max_filesize = $MAX_UPLOAD_SIZE/g" /etc/php5/fpm/php.ini
-	sed -i "s/post_max_size =.*/post_max_size = $MAX_UPLOAD_SIZE/g" /etc/php5/fpm/php.ini
+	sed -i "s/^upload_max_filesize =.*/upload_max_filesize = $MAX_UPLOAD_SIZE/g" /etc/php.ini
+	sed -i "s/^post_max_size =.*/post_max_size = $MAX_UPLOAD_SIZE/g" /etc/php.ini
 
 fi
 
-perl >>/etc/php5/fpm/pool.d/www.conf <<EOF
+perl >>/etc/php-fpm.d/www.conf <<EOF
 foreach my \$key (keys %ENV) {
 	next if \$key eq "_";
 	next if \$key eq "module";
@@ -14,4 +14,4 @@ foreach my \$key (keys %ENV) {
 }
 EOF
 
-/usr/sbin/php5-fpm --fpm-config /etc/php5/fpm/php-fpm.conf
+/usr/sbin/php-fpm --fpm-config /etc/php-fpm.conf

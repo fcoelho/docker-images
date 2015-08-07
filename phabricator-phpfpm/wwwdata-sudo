@@ -1,1 +1,0 @@
-www-data ALL=(phd) SETENV: NOPASSWD: /usr/lib/git-core/git-http-backend, /usr/bin/hg
