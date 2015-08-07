@@ -4,7 +4,7 @@
 VCSUSER="scm"
 
 # NOTE: Replace this with the path to your Phabricator directory.
-ROOT="/phabricator/phabricator"
+ROOT="/opt/phabricator"
 
 if [ "$1" != "$VCSUSER" ];
 then
