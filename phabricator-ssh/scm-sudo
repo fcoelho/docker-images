@@ -1,1 +1,3 @@
+Defaults:scm !requiretty
+
 scm ALL=(phd) SETENV: NOPASSWD: /usr/bin/git-upload-pack, /usr/bin/git-receive-pack, /usr/bin/hg
