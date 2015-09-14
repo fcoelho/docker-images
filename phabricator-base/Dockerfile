@@ -5,6 +5,8 @@ MAINTAINER Felipe Bessa Coelho <fcoelho.9@gmail.com>
 RUN useradd --system scm
 RUN useradd --system phd
 
+COPY mercurial.repo /etc/yum.repos.d/mercurial.repo
+
 RUN yum install -y epel-release
 RUN yum install -y \
     git            \
