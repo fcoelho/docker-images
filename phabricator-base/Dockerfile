@@ -25,6 +25,7 @@ RUN yum install -y \
     supervisor
 
 COPY rebase.rc /etc/mercurial/hgrc.d/rebase.rc
+COPY scm-sudo /etc/sudoers.d/scm-sudo
 
 ENV PHABRICATOR_VERSION=stable \
     LIBPHUTIL_VERSION=stable   \
