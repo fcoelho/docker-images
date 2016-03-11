@@ -22,7 +22,8 @@ RUN yum install -y \
     php-opcache    \
     php-process    \
     sudo           \
-    supervisor
+    supervisor     \
+    which
 
 COPY rebase.rc /etc/mercurial/hgrc.d/rebase.rc
 COPY scm-sudo /etc/sudoers.d/scm-sudo
