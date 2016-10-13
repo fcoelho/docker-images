@@ -10,6 +10,7 @@ RUN    sed -i "s/listen =.*/listen = 0.0.0.0:9000/g" /etc/php-fpm.d/www.conf \
 	&& sed -i "s/;opcache.validate_timestamps=.*/opcache.validate_timestamps = 0/g" /etc/php.d/opcache.ini
 RUN pip install pygments
 
+COPY phabricator.ini /etc/php.d/phabricator.ini
 COPY run.sh /run.sh
 
 EXPOSE 9000
