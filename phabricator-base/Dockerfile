@@ -2,8 +2,8 @@ FROM centos:centos7
 
 MAINTAINER Felipe Bessa Coelho <fcoelho.9@gmail.com>
 
-RUN useradd --system scm
-RUN useradd --system phd
+RUN useradd --system --home-dir / scm
+RUN useradd --system --home-dir / phd
 
 COPY mercurial.repo /etc/yum.repos.d/mercurial.repo
 
