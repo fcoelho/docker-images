@@ -19,5 +19,7 @@ PrintMotd no
 PrintLastLog no
 PasswordAuthentication no
 AuthorizedKeysFile none
+GSSAPIAuthentication no
+UseDNS no
 
 PidFile /var/run/sshd-phabricator.pid
